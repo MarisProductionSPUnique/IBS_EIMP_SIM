@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: ibs-eimp-support-simulator
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python -m unittest discover -s tests -v
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 app:app
+    healthCheckPath: /health
