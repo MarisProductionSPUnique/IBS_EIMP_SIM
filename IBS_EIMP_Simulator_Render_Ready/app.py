@@ -127,5 +127,8 @@ def download(name):
 @app.get('/health')
 def health(): return jsonify(status='UP', service='IBS-EIMP Simulation Lab')
 
+from ibs_lab import register as register_ibs_lab
+register_ibs_lab(app, get_state, addlog)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=int(os.environ.get('PORT','5000')),debug=False)
